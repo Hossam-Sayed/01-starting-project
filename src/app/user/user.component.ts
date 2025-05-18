@@ -4,7 +4,6 @@ import {
   EventEmitter,
   input,
   Input,
-  output,
   Output,
   signal,
 } from '@angular/core';
@@ -26,11 +25,8 @@ export class UserComponent {
 
   // Event
   // Store the value of the event in 'select'
-  // @Output() select = new EventEmitter();
-
-  // output function offers the same bahavior as the decorator
-  // output doesn't create a signal as the input funciton does
-  select = output<string>();
+  // Add explicit event generic type for extra type safety
+  @Output() select = new EventEmitter<string>();
 
   get imagePath() {
     return 'assets/users/' + this.avatar;
