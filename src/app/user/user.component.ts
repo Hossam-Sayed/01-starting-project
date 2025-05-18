@@ -1,7 +1,5 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, input, Input, signal } from '@angular/core';
 import { DUMMY_USERS } from '../dummy-users';
-
-const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
 
 @Component({
   selector: 'app-user',
@@ -11,24 +9,18 @@ const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
   styleUrl: './user.component.css',
 })
 export class UserComponent {
-  // Define a new variable without const/var/let
-  // You can access this variable from inside the templateUrls above
-  // You have two ways to access this field:
-  // 1. String interpolation wiht the {{  }}
-  // 2. Property Binding
-  selectedUser = signal(DUMMY_USERS[randomIndex]);
+  // Add input decorator
+  // @Input({ required: true }) avatar!: string;
+  // @Input({ required: true }) name!: string;
 
-  imagePath = computed(() => 'assets/users/' + this.selectedUser().avatar);
+  avatar = input.required<string>();
+  name = input.required<string>();
 
-  // The get keyword actually exposes a proeprty not a function
+  imagePath = computed(() => 'assets/users/' + this.avatar());
+
   // get imagePath() {
-  //   return 'assets/users/' + this.selectedUser.avatar;
+  //   return 'assets/users/' + this.avatar;
   // }
 
-  // Add click event listener
-  // Called as normal functions
-  onSelectedUser() {
-    const randomIndex = Math.floor(Math.random() * DUMMY_USERS.length);
-    this.selectedUser.set(DUMMY_USERS[randomIndex]);
-  }
+  onSelectedUser() {}
 }
