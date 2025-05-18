@@ -10,17 +10,12 @@ import { DUMMY_USERS } from '../dummy-users';
 })
 export class UserComponent {
   // Add input decorator
-  // @Input({ required: true }) avatar!: string;
-  // @Input({ required: true }) name!: string;
+  @Input({ required: true }) avatar!: string;
+  @Input({ required: true }) name!: string;
 
-  avatar = input.required<string>();
-  name = input.required<string>();
-
-  imagePath = computed(() => 'assets/users/' + this.avatar());
-
-  // get imagePath() {
-  //   return 'assets/users/' + this.avatar;
-  // }
+  get imagePath() {
+    return 'assets/users/' + this.avatar;
+  }
 
   onSelectedUser() {}
 }
